@@ -74,10 +74,6 @@ const Footer = () => {
                   </a>
                 </li>
               </ul>
-              <div className="footer__demo-notice">
-                <span className="footer__demo-badge">⚠️ Demo Mode</span>
-                <p>Products shown are for demonstration. Replace affiliate URLs with your actual tracking links.</p>
-              </div>
             </div>
           </div>
         </div>
