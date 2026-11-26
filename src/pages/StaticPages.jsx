@@ -16,23 +16,23 @@ export const AffiliateDisclosurePage = () => (
         <section>
           <h2>Our Relationship with AliExpress</h2>
           <p>
-            EKE is an independent affiliate marketing website. We participate in the AliExpress Portals Affiliate Programme 
+            OASIS is an independent affiliate marketing website. We participate in the AliExpress Portals Affiliate Programme 
             (and related programmes operated by Alibaba Group). This means that when you click on a "Buy Now" button 
-            on EKE and subsequently make a qualifying purchase on AliExpress, we may receive a commission.
+            on OASIS and subsequently make a qualifying purchase on AliExpress, we may receive a commission.
           </p>
           <p>
             <strong>This commission comes at no additional cost to you.</strong> The price you pay on AliExpress is exactly 
-            the same whether you arrived there via EKE or directly.
+            the same whether you arrived there via OASIS or directly.
           </p>
         </section>
 
         <section>
           <h2>How It Works</h2>
           <ol>
-            <li>You browse products on EKE and find something you like.</li>
+            <li>You browse products on OASIS and find something you like.</li>
             <li>You click the "Buy Now" button — this takes you to AliExpress via our tracked affiliate link.</li>
             <li>You purchase the product on AliExpress. AliExpress handles everything: payment, fulfilment, shipping, and customer service.</li>
-            <li>EKE may earn a small commission on qualifying purchases.</li>
+            <li>OASIS may earn a small commission on qualifying purchases.</li>
           </ol>
         </section>
 
@@ -48,7 +48,7 @@ export const AffiliateDisclosurePage = () => (
         <section>
           <h2>Pricing Disclaimer</h2>
           <p>
-            Prices displayed on EKE are indicative and sourced from AliExpress at the time of listing. 
+            Prices displayed on OASIS are indicative and sourced from AliExpress at the time of listing. 
             Prices on AliExpress may change at any time. Always verify the current price before purchasing.
           </p>
         </section>
@@ -56,7 +56,7 @@ export const AffiliateDisclosurePage = () => (
         <section>
           <h2>Contact</h2>
           <p>
-            If you have questions about our affiliate relationships, please note that EKE is an independent operator 
+            If you have questions about our affiliate relationships, please note that OASIS is an independent operator 
             and not affiliated with or endorsed by Alibaba Group or AliExpress.
           </p>
         </section>
@@ -80,7 +80,7 @@ export const PrivacyPage = () => (
         <section>
           <h2>Information We Collect</h2>
           <p>
-            EKE is a client-side affiliate marketplace. We do not collect personal information through registration or accounts.
+            OASIS is a client-side affiliate marketplace. We do not collect personal information through registration or accounts.
             Your wishlist is stored locally in your browser only.
           </p>
           <p>When you click affiliate links, you are directed to AliExpress. AliExpress has its own privacy policy 
@@ -121,14 +121,14 @@ export const AboutPage = () => (
       <div className="breadcrumb">
         <Link to="/">Home</Link>
         <span>/</span>
-        <span>About EKE</span>
+        <span>About OASIS</span>
       </div>
-      <h1>About EKE</h1>
+      <h1>About OASIS</h1>
       <div className="static-page__content">
         <section>
           <h2>Discover More. Shop Smarter.</h2>
           <p>
-            EKE is a premium international affiliate shopping marketplace designed to help you discover 
+            OASIS is a premium international affiliate shopping marketplace designed to help you discover 
             the world's best products from AliExpress. We curate thousands of top-rated products across 
             electronics, fashion, shoes, watches, home goods, and beauty — all in one elegant destination.
           </p>
@@ -136,7 +136,7 @@ export const AboutPage = () => (
         <section>
           <h2>How We're Different</h2>
           <p>
-            Rather than sifting through millions of listings, EKE does the hard work for you. 
+            Rather than sifting through millions of listings, OASIS does the hard work for you. 
             Our curated collection focuses on quality, value, and customer satisfaction — 
             featuring only products with strong ratings and verified reviews.
           </p>
@@ -144,8 +144,8 @@ export const AboutPage = () => (
         <section>
           <h2>Our Business Model</h2>
           <p>
-            EKE is an affiliate marketplace. We earn a small commission when you purchase through our links, 
-            at no extra cost to you. This allows us to keep EKE free, ad-light, and focused on quality curation.
+            OASIS is an affiliate marketplace. We earn a small commission when you purchase through our links, 
+            at no extra cost to you. This allows us to keep OASIS free, ad-light, and focused on quality curation.
           </p>
           <Link to="/affiliate-disclosure" className="btn btn--outline" style={{ marginTop: '12px', display: 'inline-flex' }}>
             Read our Affiliate Disclosure →

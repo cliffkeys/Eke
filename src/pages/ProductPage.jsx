@@ -65,7 +65,7 @@ const ProductPage = () => {
                 src={images[selectedImage] || product.image}
                 alt={product.name}
                 className="product-page__main-image"
-                onError={(e) => { e.target.src = 'https://via.placeholder.com/600x600?text=EKE+Product'; }}
+                onError={(e) => { e.target.src = 'https://via.placeholder.com/600x600?text=OASIS+Product'; }}
               />
               {product.discount > 0 && (
                 <span className="product-card__badge" style={{ top: 16, left: 16, fontSize: 14, padding: '6px 12px' }}>
@@ -81,7 +81,7 @@ const ProductPage = () => {
                     className={`product-page__thumb ${i === selectedImage ? 'product-page__thumb--active' : ''}`}
                     onClick={() => setSelectedImage(i)}
                   >
-                    <img src={img} alt={`View ${i + 1}`} onError={(e) => { e.target.src = 'https://via.placeholder.com/80x80?text=EKE'; }} />
+                    <img src={img} alt={`View ${i + 1}`} onError={(e) => { e.target.src = 'https://via.placeholder.com/80x80?text=OASIS'; }} />
                   </button>
                 ))}
               </div>

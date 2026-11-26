@@ -1,5 +1,5 @@
 import React from 'react';
-import EkeLogo from './Logo';
+import OasisLogo from './Logo';
 import { Link } from 'react-router-dom';
 import { categories } from '../data/products';
 import { Shield, Info, ExternalLink } from 'lucide-react';
@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="footer__disclosure-inner">
             <Info size={16} />
             <p>
-              <strong>Affiliate Disclosure:</strong> EKE participates in the AliExpress affiliate programme. 
+              <strong>Affiliate Disclosure:</strong> OASIS participates in the AliExpress affiliate programme. 
               When you click "Buy Now" and make a purchase, we may earn a commission at no additional cost to you. 
               This helps us keep the site free and running. All prices shown are as listed on AliExpress at time of display.
             </p>
@@ -26,9 +26,9 @@ const Footer = () => {
           <div className="footer__grid">
             {/* Brand */}
             <div className="footer__brand">
-              <EkeLogo size="md" />
+              <OasisLogo size="md" />
               <p className="footer__brand-desc">
-                EKE is your premium international shopping destination. 
+                OASIS is your premium international shopping destination. 
                 We curate the best products from AliExpress so you can discover more and shop smarter.
               </p>
               <div className="footer__trust">
@@ -65,7 +65,7 @@ const Footer = () => {
 
             {/* About */}
             <div className="footer__col">
-              <h4 className="footer__heading">About EKE</h4>
+              <h4 className="footer__heading">About OASIS</h4>
               <ul className="footer__list">
                 <li><Link to="/about" className="footer__link">About Us</Link></li>
                 <li>
@@ -81,7 +81,7 @@ const Footer = () => {
 
       <div className="footer__bottom">
         <div className="container">
-          <p>© {new Date().getFullYear()} EKE — Discover More. Shop Smarter. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} OASIS — Discover More. Shop Smarter. All rights reserved.</p>
           <p className="footer__bottom-note">An independent affiliate marketplace. Not affiliated with AliExpress or Alibaba Group.</p>
         </div>
       </div>

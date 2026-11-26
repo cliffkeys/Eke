@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useAdmin } from '../context/AdminContext';
-import { Plus, Edit2, Trash2, LogOut, Eye, RefreshCw, Lock, Package, TrendingUp, Star, Upload, Image as ImageIcon } from 'lucide-react';
+import { Plus, Edit2, Trash2, LogOut, Eye, RefreshCw, Lock, Package, TrendingUp, Star, Upload, Image as ImageIcon, Rocket, Download } from 'lucide-react';
 
 // Admin Login Form
 const LoginForm = ({ onLogin }) => {
@@ -26,7 +26,7 @@ const LoginForm = ({ onLogin }) => {
     <main style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8f8f8' }}>
       <div className="admin-login">
         <div className="admin-login__icon"><Lock size={32} /></div>
-        <h2 className="admin-login__title">EKE Admin Panel</h2>
+        <h2 className="admin-login__title">OASIS Admin Panel</h2>
         <p className="admin-login__subtitle">Restricted access. Authorised personnel only.</p>
         <form onSubmit={handleSubmit} className="admin-login__form">
           <input
@@ -43,7 +43,7 @@ const LoginForm = ({ onLogin }) => {
             {loading ? 'Verifying...' : 'Access Admin Panel'}
           </button>
         </form>
-        <Link to="/" className="admin-login__back">← Back to EKE Store</Link>
+        <Link to="/" className="admin-login__back">← Back to OASIS Store</Link>
       </div>
     </main>
   );
@@ -272,10 +272,100 @@ const ProductFormModal = ({ product, onSave, onClose }) => {
   );
 };
 
+// Publish Live Modal
+const PublishLiveModal = ({ products, onPublish, onClose, onSuccess }) => {
+  const [token, setToken] = useState(() => {
+    try { return localStorage.getItem('oasis_gh_token') || ''; } catch { return ''; }
+  });
+  const [repo, setRepo] = useState('cliffkeys/Eke');
+  const [rememberToken, setRememberToken] = useState(true);
+  const [publishing, setPublishing] = useState(false);
+  const [error, setError] = useState('');
+
+  const handlePublish = async (e) => {
+    e.preventDefault();
+    setError('');
+    setPublishing(true);
+    try {
+      await onPublish(token, repo, 'main');
+      if (rememberToken) {
+        try { localStorage.setItem('oasis_gh_token', token.trim()); } catch {}
+      } else {
+        try { localStorage.removeItem('oasis_gh_token'); } catch {}
+      }
+      onSuccess();
+    } catch (err) {
+      setError(err.message || 'Failed to publish to GitHub.');
+    } finally {
+      setPublishing(false);
+    }
+  };
+
+  const handleDownloadJson = () => {
+    const blob = new Blob([JSON.stringify(products, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'products.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal" onClick={e => e.stopPropagation()}>
+        <div className="modal__header">
+          <h3>🚀 Publish Products to All Customers</h3>
+          <button type="button" className="modal__close" onClick={onClose}>×</button>
+        </div>
+        <form onSubmit={handlePublish} className="modal__form">
+          <p style={{ fontSize: '14px', color: '#444', marginBottom: '16px', lineHeight: 1.6 }}>
+            Edits you make in the admin panel are saved as a local draft first. Publish to update{' '}
+            <code>src/data/products.json</code> in GitHub so Vercel automatically deploys your changes for every customer.
+          </p>
+          <div className="form-group">
+            <label>GitHub Repository (owner/repo)</label>
+            <input value={repo} onChange={e => setRepo(e.target.value)} required placeholder="cliffkeys/Eke" />
+          </div>
+          <div className="form-group">
+            <label>GitHub Personal Access Token (stored only in your browser)</label>
+            <input
+              type="password"
+              value={token}
+              onChange={e => setToken(e.target.value)}
+              required
+              placeholder="ghp_..."
+            />
+          </div>
+          <div className="form-group">
+            <label className="checkbox-label">
+              <input type="checkbox" checked={rememberToken} onChange={e => setRememberToken(e.target.checked)} />
+              Remember token in this browser
+            </label>
+          </div>
+          {error && <p className="form-hint form-hint--error" style={{ marginBottom: '12px' }}>{error}</p>}
+          <div className="modal__actions" style={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
+            <button type="button" className="btn btn--outline" onClick={handleDownloadJson}>
+              <Download size={15} /> Download products.json
+            </button>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button type="button" className="btn btn--outline" onClick={onClose}>Cancel</button>
+              <button type="submit" className="btn btn--primary" disabled={publishing}>
+                <Rocket size={15} /> {publishing ? 'Publishing...' : 'Publish Live'}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
 // Admin Dashboard
 const AdminDashboard = () => {
-  const { products, addProduct, updateProduct, deleteProduct, deleteProducts, logout, resetProducts, storageError, clearStorageError } = useAdmin();
+  const { products, addProduct, updateProduct, deleteProduct, deleteProducts, logout, resetProducts, hasUnpublishedChanges, publishToGitHub, storageError, clearStorageError } = useAdmin();
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showPublishModal, setShowPublishModal] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
   const [selectedIds, setSelectedIds] = useState([]);
@@ -356,14 +446,28 @@ const AdminDashboard = () => {
       <div className="container">
         <div className="admin-page__header">
           <div>
-            <h1 className="admin-page__title">🛠️ EKE Admin Panel</h1>
+            <h1 className="admin-page__title">🛠️ OASIS Admin Panel</h1>
             <p className="admin-page__subtitle">Manage your product catalogue</p>
           </div>
           <div className="admin-page__header-actions">
+            <button
+              type="button"
+              className="btn btn--primary"
+              onClick={() => setShowPublishModal(true)}
+              style={{ position: 'relative' }}
+            >
+              <Rocket size={16} /> Publish Live
+              {hasUnpublishedChanges && (
+                <span style={{
+                  background: '#111', color: '#fff', fontSize: '10px',
+                  padding: '2px 6px', borderRadius: '999px', marginLeft: '4px'
+                }}>Draft</span>
+              )}
+            </button>
             <Link to="/" target="_blank" className="btn btn--outline" style={{ gap: '6px', display: 'flex', alignItems: 'center' }}>
               <Eye size={16} /> View Store
             </Link>
-            <button type="button" className="btn btn--outline" onClick={() => { if(window.confirm('Reset all products to defaults?')) { resetProducts(); setSelectedIds([]); showToast('Products reset to defaults'); } }} title="Reset to defaults">
+            <button type="button" className="btn btn--outline" onClick={() => { if(window.confirm('Discard unpublished draft and reset to live published catalog?')) { resetProducts(); setSelectedIds([]); showToast('Synced with published catalog'); } }} title="Sync with live catalog">
               <RefreshCw size={16} />
             </button>
             <button type="button" className="btn btn--outline" onClick={logout} style={{ color: '#e53e3e', borderColor: '#e53e3e' }}>
@@ -371,6 +475,20 @@ const AdminDashboard = () => {
             </button>
           </div>
         </div>
+
+        {hasUnpublishedChanges && (
+          <div style={{
+            background: '#FFF8F5', color: '#9C4221', padding: '12px 18px',
+            borderRadius: '10px', marginBottom: '20px', fontSize: '14px',
+            fontWeight: 500, display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            gap: '12px', flexWrap: 'wrap', border: '1px solid #FBD38D'
+          }}>
+            <span>📢 You have unpublished changes saved locally. Click <strong>Publish Live</strong> so all customers can see them.</span>
+            <button type="button" className="btn btn--primary" style={{ padding: '8px 14px', fontSize: '13px' }} onClick={() => setShowPublishModal(true)}>
+              Publish Now
+            </button>
+          </div>
+        )}
 
         {storageError && (
           <div style={{
@@ -506,7 +624,7 @@ const AdminDashboard = () => {
                       src={p.image}
                       alt={p.name}
                       className="admin-table__thumb"
-                      onError={e => { e.target.src = 'https://via.placeholder.com/50x50?text=EKE'; }}
+                      onError={e => { e.target.src = 'https://via.placeholder.com/50x50?text=OASIS'; }}
                     />
                   </td>
                   <td className="admin-table__name">{p.name}</td>
@@ -592,6 +710,19 @@ const AdminDashboard = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Publish Live Modal */}
+      {showPublishModal && (
+        <PublishLiveModal
+          products={products}
+          onPublish={publishToGitHub}
+          onClose={() => setShowPublishModal(false)}
+          onSuccess={() => {
+            setShowPublishModal(false);
+            showToast('Published! Vercel will update your live store in ~30 seconds.');
+          }}
+        />
       )}
     </main>
   );

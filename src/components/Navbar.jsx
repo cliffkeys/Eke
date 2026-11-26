@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import EkeLogo from './Logo';
+import OasisLogo from './Logo';
 import { Search, Menu, X, Heart, ChevronDown } from 'lucide-react';
 import { categories } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className="navbar__inner container">
         {/* Logo */}
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <EkeLogo size="md" />
+          <OasisLogo size="md" />
         </Link>
 
         {/* Desktop Navigation */}

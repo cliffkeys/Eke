@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
           alt={product.name}
           className="product-card__image"
           loading="lazy"
-          onError={(e) => { e.target.src = 'https://via.placeholder.com/400x400?text=EKE+Product'; }}
+          onError={(e) => { e.target.src = 'https://via.placeholder.com/400x400?text=OASIS+Product'; }}
         />
         {product.discount > 0 && (
           <span className="product-card__badge">-{product.discount}%</span>

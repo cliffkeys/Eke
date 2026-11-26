@@ -1,7 +1,7 @@
 import React from 'react';
 
-// EKE Logo Component - Distinctive Professional SVG Logo
-const EkeLogo = ({ size = 'md', variant = 'full' }) => {
+// OASIS Logo Component - Distinctive Professional SVG Logo
+const OasisLogo = ({ size = 'md', variant = 'full' }) => {
   const sizes = {
     sm: { height: 32, fontSize: 18, tagSize: 8 },
     md: { height: 40, fontSize: 24, tagSize: 9 },
@@ -13,8 +13,9 @@ const EkeLogo = ({ size = 'md', variant = 'full' }) => {
   if (variant === 'icon') {
     return (
       <svg width={s.height} height={s.height} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="10" fill="#FF6B2B"/>
-        <text x="24" y="34" textAnchor="middle" fontFamily="'Segoe UI', Arial, sans-serif" fontWeight="900" fontSize="28" fill="white" letterSpacing="-1">E</text>
+        <rect width="48" height="48" rx="12" fill="#FF6B2B"/>
+        <circle cx="24" cy="24" r="12" stroke="white" strokeWidth="4" fill="none"/>
+        <circle cx="24" cy="24" r="4.5" fill="white"/>
       </svg>
     );
   }
@@ -23,14 +24,9 @@ const EkeLogo = ({ size = 'md', variant = 'full' }) => {
     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
       {/* Icon Mark */}
       <svg width={s.height} height={s.height} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="48" height="48" rx="10" fill="#FF6B2B"/>
-        {/* E letter stylized */}
-        <rect x="12" y="12" width="22" height="4" rx="2" fill="white"/>
-        <rect x="12" y="22" width="17" height="4" rx="2" fill="white"/>
-        <rect x="12" y="32" width="22" height="4" rx="2" fill="white"/>
-        <rect x="12" y="12" width="4" height="24" rx="2" fill="white"/>
-        {/* K element */}
-        <circle cx="38" cy="24" r="5" fill="white" opacity="0.3"/>
+        <rect width="48" height="48" rx="12" fill="#FF6B2B"/>
+        <circle cx="24" cy="24" r="12" stroke="white" strokeWidth="4" fill="none"/>
+        <circle cx="24" cy="24" r="4.5" fill="white"/>
       </svg>
       {/* Wordmark */}
       <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
@@ -38,12 +34,12 @@ const EkeLogo = ({ size = 'md', variant = 'full' }) => {
           fontFamily: "'Segoe UI', 'Helvetica Neue', Arial, sans-serif",
           fontWeight: '900',
           fontSize: `${s.fontSize}px`,
-          letterSpacing: '0.08em',
+          letterSpacing: '0.12em',
           background: 'linear-gradient(135deg, #FF6B2B 0%, #FF8C42 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
-        }}>EKE</span>
+        }}>OASIS</span>
         {size !== 'sm' && (
           <span style={{
             fontFamily: "'Segoe UI', Arial, sans-serif",
@@ -59,4 +55,4 @@ const EkeLogo = ({ size = 'md', variant = 'full' }) => {
   );
 };
 
-export default EkeLogo;
+export default OasisLogo;

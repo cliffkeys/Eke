@@ -22,7 +22,7 @@ const ScrollToTop = () => {
 
 const AppLayout = ({ children }) => {
   const { pathname } = useLocation();
-  const isAdmin = pathname.startsWith('/eke-admin');
+  const isAdmin = pathname.startsWith('/oasis-admin');
   return (
     <div className="app">
       {!isAdmin && <Navbar />}
@@ -52,7 +52,7 @@ function App() {
               <Route path="/affiliate-disclosure" element={<AffiliateDisclosurePage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/eke-admin" element={<AdminPage />} />
+              <Route path="/oasis-admin" element={<AdminPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </AppLayout>
