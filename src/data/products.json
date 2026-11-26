@@ -112,36 +112,6 @@
     ]
   },
   {
-    "id": 4,
-    "name": "4K Action Camera Pro",
-    "category": "electronics",
-    "price": 59.99,
-    "originalPrice": 119.99,
-    "discount": 50,
-    "rating": 4.5,
-    "reviews": 4521,
-    "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&q=80",
-    "images": [
-      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&q=80"
-    ],
-    "description": "Professional 4K action camera with EIS stabilization, 170° wide-angle lens, waterproof to 30m, and WiFi connectivity.",
-    "features": [
-      "4K Video",
-      "EIS Stabilization",
-      "30m Waterproof",
-      "WiFi",
-      "170° Wide Angle"
-    ],
-    "affiliateUrl": "https://www.aliexpress.com/item/1005003456789012.html?aff_fcid=YOUR_AFFILIATE_ID",
-    "trending": false,
-    "featured": false,
-    "tags": [
-      "camera",
-      "4k",
-      "action"
-    ]
-  },
-  {
     "id": 5,
     "name": "Mechanical Gaming Keyboard RGB",
     "category": "electronics",
